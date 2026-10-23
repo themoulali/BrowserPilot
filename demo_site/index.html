@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BrowserPilot | Automation Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f6fb; margin: 0; padding: 3rem 1rem; color: #1f2937; }
+    main { max-width: 440px; margin: auto; background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 8px 30px #00000012; }
+    label { display: block; margin-top: 1rem; font-weight: 600; }
+    input { box-sizing: border-box; width: 100%; padding: .75rem; margin-top: .4rem; border: 1px solid #cbd5e1; border-radius: 7px; }
+    button { margin-top: 1.25rem; width: 100%; padding: .8rem; border: 0; border-radius: 7px; background: #2457d6; color: white; font-weight: 700; cursor: pointer; }
+    #status-message { margin-top: 1rem; padding: .8rem; background: #e8f7ed; border-radius: 7px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Student Portal</h1>
+    <p>Offline sample page for practicing browser automation.</p>
+    <form id="login-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+    </form>
+    <p id="status-message" role="status" hidden></p>
+  </main>
+  <script>
+    document.querySelector("#login-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = document.querySelector("#username").value.trim();
+      const password = document.querySelector("#password").value;
+      const message = document.querySelector("#status-message");
+      if (username === "student" && password === "Playwright123!") {
+        message.textContent = "Welcome, student! Login successful.";
+        message.style.background = "#e8f7ed";
+      } else {
+        message.textContent = "Login failed. Check your username and password.";
+        message.style.background = "#fdecec";
+      }
+      message.hidden = false;
+    });
+  </script>
+</body>
+</html>
